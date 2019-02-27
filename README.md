@@ -8,7 +8,7 @@ A mini version of Deep Learning for Protein Structure Prediction inspired by [De
 
 The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict a.) angles between adjacent aminoacids (AAs) and b.) distance between every pair of AAs of a protein. 
 
-<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="300" height="400">
+<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
 Image from DeepMind's original blogpost.
 
 
