@@ -8,9 +8,9 @@ A mini version of Deep Learning for Protein Structure Prediction inspired by [De
 
 The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. 
 
-<center>
+<div style="text-align:center">
 	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
-</center>
+</div>
 
 Image from DeepMind's original blogpost.
 
@@ -22,9 +22,9 @@ The 41 channels of the input are distributed as follows: 20 for AAs in one-hot e
 
 The network is comprised of packs of residual blocks with the architecture below illustrated with blocks cycling through 1,2,4 and 8 strides plus a first normal convolutional layer and the last convolutional layer where a Softmax activation function is applied to get an output of LxLx7 (6 classes for different distance + 1 trash class for the padding that is less penalized).
 
-<center>
+<div style="text-align:center">
 	<img src="imgs/elu_resnet_2d.png">
-</center>
+</div>
 
 Architecture of the residual block used. A mini version of the block in [this description](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)
 
