@@ -6,10 +6,31 @@ A mini version of Deep Learning for Protein Structure Prediction inspired by [De
 
 ## Proposed Architecture 
 
-The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict a.) angles between adjacent aminoacids (AAs) and b.) distance between every pair of AAs of a protein. 
+The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. 
 
-<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
+<center>
+	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
+</center>
+
 Image from DeepMind's original blogpost.
+
+### Distance prediction
+
+The ResNet for distance prediction is built as a 2D-ResNet and takes as input tensors of shape LxLxN (a normal image would be LxLx3). The window length is set to 200 (we only train and predict proteins of less than 200 AAs) and smaller proteins are padded to match the window size. No larger proteins nor crops of larger proteins are used.
+
+The 41 channels of the input are distributed as follows: 20 for AAs in one-hot encoding (LxLx20), 1 for the Van der Waals radius of the AA encoded previously and 20 channels for the Position Specific Scoring Matrix).
+
+The network is comprised of packs of residual blocks with the architecture below illustrated with blocks cycling through 1,2,4 and 8 strides plus a first normal convolutional layer and the last convolutional layer where a Softmax activation function is applied to get an output of LxLx7 (6 classes for different distance + 1 trash class for the padding that is less penalized).
+
+<center>
+	<img src="imgs/elu_resnet_2d.png">
+</center>
+
+Architecture of the residual block used. A mini version of the block in [this description](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)
+
+The network was trained with 134 proteins and evaluated with 16 more. Clearly unsufficient data, but memory constraints didn't allow for more. Comparably, AlphaFold was trained with 29k proteins.
+
+
 
 
 ## Future
@@ -33,11 +54,15 @@ Due to these limitations and/or constraints, the precission/accuracy the methods
 
 
 ## References
-* **DeepMind's original blog post**: []()
-* ****: []()
-* ****: []()
-* ****: []()
-* ****: []()
+* [DeepMind original blog post](https://deepmind.com/blog/alphafold/)
+* [AlphaFold @ CASP13: “What just happened?”](https://moalquraishi.wordpress.com/2018/12/09/alphafold-casp13-what-just-happened/#s2.2)
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
+* []()
 
 ## Contribute
 Hey there! New ideas are welcome: open/close issues, fork the repo and share your code with a Pull Request.
