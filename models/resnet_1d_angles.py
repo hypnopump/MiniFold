@@ -59,7 +59,7 @@ def resnet_layer(inputs,
         x = conv(x)
     return x
 
-def resnet_v2(input_shape, depth, num_classes=4):
+def resnet_v2(input_shape, depth, num_classes=4, conv_first=True):
     """ResNet Version 2 Model builder [b]
 
     Stacks of (1 x 1)-(3 x 3)-(1 x 1) BN-ReLU-Conv2D or also known as
@@ -119,14 +119,14 @@ def resnet_v2(input_shape, depth, num_classes=4):
                              strides=strides,
                              activation=activation,
                              batch_normalization=batch_normalization,
-                             conv_first=True)
+                             conv_first=conv_first)
             y = resnet_layer(inputs=y,
                              num_filters=num_filters_in,
-                             conv_first=True)
+                             conv_first=conv_first)
             y = resnet_layer(inputs=y,
                              num_filters=num_filters_out,
                              kernel_size=1,
-                             conv_first=True)
+                             conv_first=conv_first)
             if res_block == 0:
                 # linear projection residual shortcut connection to match
                 # changed dims
@@ -158,7 +158,7 @@ def resnet_v2(input_shape, depth, num_classes=4):
 if __name__ == "__main__":
 	# Using AMSGrad optimizer for speed 
 	kernel_size, filters = 3, 16
-	adam = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=True)
+	adam = keras.optimizers.Adam(amsgrad=True)
 	# Create model
 	model = resnet_v2(input_shape=(17*2,41), depth=20, num_classes=4)
 	model.compile(optimizer=adam, loss=custom_mse_mae,
