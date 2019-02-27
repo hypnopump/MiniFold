@@ -6,7 +6,7 @@ A mini version of Deep Learning for Protein Structure Prediction inspired by [De
 
 ## Proposed Architecture 
 
-The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. 
+The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. For distance prediction a 2D Resnet was used while for angles prediction a 1D Resnet was used.
 
 <div style="text-align:center">
 	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
@@ -30,6 +30,17 @@ Architecture of the residual block used. A mini version of the block in [this de
 
 The network was trained with 134 proteins and evaluated with 16 more. Clearly unsufficient data, but memory constraints didn't allow for more. Comparably, AlphaFold was trained with 29k proteins.
 
+The output of the network is, then, a classification among 6 classes wich are ranges of distances between a pair of AAs. Here there's an example of AlphaFold predicted distances and the distances predicted by our model:
+
+<div style="text-align:center">
+	<img src="imgs/alphafold_preds.png">
+</div>
+Ground truth (left) and predicted distances (right) by AlphaFold.
+
+<div style="text-align:center">
+	<img src="imgs/our_preds.png">
+</div>
+Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
 
 
 
