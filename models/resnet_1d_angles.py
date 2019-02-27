@@ -1,6 +1,4 @@
 # Import libraries
-import numpy as np
-import matplotlib.pyplot as plt
 import keras
 import keras.backend as K
 from keras.models import Model
@@ -12,11 +10,6 @@ from keras.layers.convolutional import Conv1D
 from keras.layers import Dense, Dropout, Flatten, Input, BatchNormalization, Activation
 from keras.layers.pooling import MaxPooling1D, AveragePooling1D, MaxPooling2D, AveragePooling2D
 
-
-
-# Using AMSGrad optimizer for speed 
-kernel_size, filters = 3, 16
-adam = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=True)
 
 def custom_mse_mae(y_true, y_pred):
     """ Custom loss function - MSE + MAE """
@@ -163,6 +156,10 @@ def resnet_v2(input_shape, depth, num_classes=4):
 
 # Check it's working
 if __name__ == "__main__":
+	# Using AMSGrad optimizer for speed 
+	kernel_size, filters = 3, 16
+	adam = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=True)
+	# Create model
 	model = resnet_v2(input_shape=(17*2,41), depth=20, num_classes=4)
 	model.compile(optimizer=adam, loss=custom_mse_mae,
 				  metrics=["mean_absolute_error", "mean_squared_error"])
