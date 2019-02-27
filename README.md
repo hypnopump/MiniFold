@@ -8,7 +8,7 @@ Creating a mini version of Deep Learning for Protein Structure Prediction inspir
 ## Proposed Architecture 
 
 ## Future
-The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [FUTURE.md](/blob/master/FUTURE.md) document.
+The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [FUTURE.md](FUTURE.md) file.
 
 *"Science is a Work In Progress."*
 
