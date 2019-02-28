@@ -19,7 +19,7 @@ I looked for inspiration at Siraj's vid comment section in order to see if someb
 ## 18-27th February
 I tried many things during this week (most of them didn't work) and read some papers about Protein Structure Prediction using AI/Deep Learning techniques. I found it very hard to implement the models described there because no official implementations were made available and I had to reverse-engineer them with much fewer data and computational power.
 
-Information about AlphaFold was scarce but finally I managed to get some information about their architecture somehow. From then I tried to implement it and it worked more or less. [Limitations](readme.md#Limitations)) have been a big constraint during the project development but I'm satisfied about the results obtained given the tools I had at my disposure.
+Information about AlphaFold was scarce but finally I managed to get some information about their architecture somehow. From then I tried to implement it and it worked more or less. [Limitations](readme.md#Limitations) have been a big constraint during the project development but I'm satisfied about the results obtained given the tools I had at my disposure.
 
 I'm happy to have released my results so far and thankful for the acceptance of the community. I will [continue working on it](future.md) and upgrading the models. Stay tuned.
 
