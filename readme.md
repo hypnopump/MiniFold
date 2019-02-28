@@ -20,7 +20,12 @@ The [methods implemented](implementation_details.md) are inspired by DeepMind's 
 
 Image from DeepMind's original blogpost.
 
-[Implementation_details.md](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md).
+[Implementation_details](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md). A sample result of the distance predictor:
+
+<div style="text-align:center">
+	<img src="imgs/our_preds.png", width="600">
+</div>
+Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
 
 
 ## Future
