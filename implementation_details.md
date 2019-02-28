@@ -68,9 +68,7 @@ The architecture of the Residual Network is different from the one implemented i
 ## Results
 While the architectures implemented in this first preliminary version of the project are inspired by papers with great results, the results here obtained are not as good as they could be. It's probable that the lack of Multiple Alignmnent (MSA), MSA-based features, Physicochemichal properties of AAs (beyond Van der Waals radius) or the lack of both model and feature engineering have affected the models negatively, as well as the little data that they have been trained on. 
 
-For that reason, we can conclude that it has been a somehow naive approach and we expect to further implement some ideas/improvements to these models. 
-
-[//]: It would be interesting to use the predictions made by the models as constraints to a folding algorithm in order to visualize our results.
+For that reason, we can conclude that it has been a somehow naive approach and we expect to further implement some ideas/improvements to these models. It would be interesting to use the predictions made by the models as constraints to a folding algorithm (ie. Rosetta) in order to visualize our results.
 
 ## References
 * [DeepMind original blog post](https://deepmind.com/blog/alphafold/)
