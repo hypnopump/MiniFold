@@ -27,8 +27,10 @@ Image from DeepMind's original blogpost.
 </div>
 Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
 
+### My Journey
+A more personal view of the project development can be found [here](minifold_journey.md)
 
-## Future
+### Future
 The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [future.md](future.md) file. In a brief way, some promising ideas:
 
 * Train with crops of 64x64, not windows of 200x200 (and average at prediction time).
@@ -40,7 +42,7 @@ The future directions of the project as well as planned/work-in-progress improve
 *"Science is a Work In Progress."*
 
 
-## Limitations
+### Limitations
 This project has been developed in one week by 1 person and,, therefore, many limitations have appeared.
 They will be listed below in order to give a sense about what this project is and what it's not.
 
