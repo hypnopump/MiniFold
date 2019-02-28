@@ -3,49 +3,36 @@ A mini version of Deep Learning for Protein Structure Prediction inspired by [De
 
 ## Summary
 
+TL;DR: [DeepMind](https://deepmind.com) a company affiliated with Google and specialized in AI presented a novel algorithm for Protein Structure Prediction at [CASP13](http://predictioncenter.org/casp13/index.cgi) (a competition which goal is to find the best algorithms that predict protein structures in different categories).
+
+The Protein Folding Problem is an interesting one since there's tons of DNA sequence data available and it's becoming cheaper and cheaper at an unprecedented rate (faster than [Moore's law](https://www.genome.gov/27541954/dna-sequencing-costs-data/)). The cells build the proteins they need through **transcription** (from DNA to RNA) and **translation** (from RNA to Aminocids (AAs)). However, the function of a protein does not depend solely on the sequence of AAs that form it, but also their spatial 3D folding. Thus, it's hard to predict the function of a protein from its DNA sequence. **AI** can help solve this problem by learning the relations that exist between a determined sequence and its spatial 3D folding. 
+
+The DeepMind work presented @ CASP was not a technological breakthrough (they did not invent any new type of AI) but an engineering one: they applied well-known AI algorithms to a problem along with lots of data and computing power and found a great solution through model design, feature engineering, model ensembling and so on. DeepMind has no plan to open source the code of their model nor set up a prediction server.
+
+Based on the premise exposed before, the aim of this project is to build a model suitable for protein 3D structure prediction inspired by AlphaFold and many other AI solutions that may appear and achieve SOTA results.
+
 
 ## Proposed Architecture 
 
-The methods implemented are inspired by the DeepMind original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. For distance prediction a 2D Resnet was used while for angles prediction a 1D Resnet was used.
+The methods implemented are inspired by DeepMind's original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. For distance prediction a 2D Resnet was used while for angles prediction a 1D Resnet was used.
 
 <div style="text-align:center">
-	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="500" height="300">
+	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="600" height="400">
 </div>
 
 Image from DeepMind's original blogpost.
 
-### Distance prediction
-
-The ResNet for distance prediction is built as a 2D-ResNet and takes as input tensors of shape LxLxN (a normal image would be LxLx3). The window length is set to 200 (we only train and predict proteins of less than 200 AAs) and smaller proteins are padded to match the window size. No larger proteins nor crops of larger proteins are used.
-
-The 41 channels of the input are distributed as follows: 20 for AAs in one-hot encoding (LxLx20), 1 for the Van der Waals radius of the AA encoded previously and 20 channels for the Position Specific Scoring Matrix).
-
-The network is comprised of packs of residual blocks with the architecture below illustrated with blocks cycling through 1,2,4 and 8 strides plus a first normal convolutional layer and the last convolutional layer where a Softmax activation function is applied to get an output of LxLx7 (6 classes for different distance + 1 trash class for the padding that is less penalized).
-
-<div style="text-align:center">
-	<img src="imgs/elu_resnet_2d.png">
-</div>
-
-Architecture of the residual block used. A mini version of the block in [this description](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)
-
-The network was trained with 134 proteins and evaluated with 16 more. Clearly unsufficient data, but memory constraints didn't allow for more. Comparably, AlphaFold was trained with 29k proteins.
-
-The output of the network is, then, a classification among 6 classes wich are ranges of distances between a pair of AAs. Here there's an example of AlphaFold predicted distances and the distances predicted by our model:
-
-<div style="text-align:center">
-	<img src="imgs/alphafold_preds.png">
-</div>
-Ground truth (left) and predicted distances (right) by AlphaFold.
-
-<div style="text-align:center">
-	<img src="imgs/our_preds.png">
-</div>
-Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
-
+A detailed explanation of the implementation details can be found at the [implementation_details.md](implementation_details.md) file.
 
 
 ## Future
-The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [FUTURE.md](FUTURE.md) file.
+The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [future.md](future.md) file. In a brief way, some promising ideas:
+
+* Train with crops of 64x64, not windows of 200x200 (and average at prediction time).
+* Use data from Multiple Sequence Alignments (MSA) such as paired changes bewteen AAs.
+* Use distance map as potential input for angle prediction (or vice versa?) .
+* Train with more data (in the cloud?)
+* ...
 
 *"Science is a Work In Progress."*
 
@@ -59,7 +46,7 @@ They will be listed below in order to give a sense about what this project is an
 * **GPU/TPUs for training**: The models were trained and evaluated on a single GPU. No cloud servers were used. 
 * **Time**: One week of development during spare time. Ideas that might be worth testing in the future are described [here]().
 * **Domain expertise**: No experts in the field. The author knows the basics of Biochemistry and Deep Learnning.
-* **Data**: The average paper about Protein Structure Prediction uses a personalized dataset acquired from the Protein Data Bank (PDB). No such dataset was used. Instead, we used a subset of the [ProteinNet](https://github.com/aqlaboratory/proteinnet) dataset from CASP7. Our models are rained with 150 proteins (distance prediction) and 600 proteins (angles prediction). 
+* **Data**: The average paper about Protein Structure Prediction uses a personalized dataset acquired from the Protein Data Bank (PDB). No such dataset was used. Instead, we used a subset of the [ProteinNet](https://github.com/aqlaboratory/proteinnet) dataset from CASP7. Our models are trained with just 150 proteins (distance prediction) and 600 proteins (angles prediction) due to memory constraints. 
 
 Due to these limitations and/or constraints, the precission/accuracy the methods here developed can achieve is limited when compared against SOTA algorithms.
 
@@ -67,13 +54,9 @@ Due to these limitations and/or constraints, the precission/accuracy the methods
 ## References
 * [DeepMind original blog post](https://deepmind.com/blog/alphafold/)
 * [AlphaFold @ CASP13: “What just happened?”](https://moalquraishi.wordpress.com/2018/12/09/alphafold-casp13-what-just-happened/#s2.2)
-* []()
-* []()
-* []()
-* []()
-* []()
-* []()
-* []()
+* [Siraj Raval's YT video on AlphaFold](https://www.youtube.com/watch?v=cw6_OP5An8s)
+* [ProteinNet dataset](https://github.com/aqlaboratory/proteinnet)
+
 
 ## Contribute
 Hey there! New ideas are welcome: open/close issues, fork the repo and share your code with a Pull Request.
