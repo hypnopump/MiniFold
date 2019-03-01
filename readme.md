@@ -27,10 +27,29 @@ Image from DeepMind's original blogpost.
 </div>
 Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
 
-### My Journey
-A more personal view of the project development can be found [here](minifold_journey.md)
 
-### Future
+## Running on your computer
+
+Here are the following steps in order to run the code locally or in the cloud:
+1. Clone the repo: `git clone https://github.com/EricAlcaide/MiniFold`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Get & format the data
+	1. Download data [here](https://github.com/aqlaboratory/proteinnet) (select CASP7 text-based format)
+	2. Extract/Decompress the data in any directory
+	3. Create the `/data` folder inside the `MiniFold` directory and copy the `training_30` file to it. Change extension to `.txt`.
+4. Execute data preprocessing notebooks (`preprocessing` folder) in the following order (we plan to release simple scripts instead of notebooks very soon):
+	1. `julia_get_proteins_under_200aa.ipynb` - selects proteins under 200 residues (you will need the [Julia programming language](https://julialang.org/) v1.0 in order to run it as well as [iJulia](https://github.com/JuliaLang/IJulia.jl))
+	2. `get_angles_from_coords_py.ipynb`
+	3. `angle_data_preparation_py.ipynb`
+5. Run the models!
+	1. For **distance prediction**: `predicting_distances.ipynb`
+	2. For **angles prediction**: `predicting_angles.ipynb`
+
+If you encounter any errors during installation, don't hesitate and open an [issue](https://github.com/EricAlcaide/MiniFold/issues).
+
+
+## Future
+
 The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [future.md](future.md) file. In a brief way, some promising ideas:
 
 * Train with crops of 64x64, not windows of 200x200 (and average at prediction time).
@@ -42,7 +61,8 @@ The future directions of the project as well as planned/work-in-progress improve
 *"Science is a Work In Progress."*
 
 
-### Limitations
+## Limitations
+
 This project has been developed in one week by 1 person and,, therefore, many limitations have appeared.
 They will be listed below in order to give a sense about what this project is and what it's not.
 
