@@ -13,7 +13,7 @@
 L = 200										# Set maximum AA length
 N = 995										# Set maximum number of proteins
 RAW_DATA_PATH = "../data/training_30.txt"	# Path to raw data file
-DESTIN_PATH = "../data/full_under_200.txts"	# Path to destin file
+DESTIN_PATH = "../data/full_under_200.txt"	# Path to destin file
 
 # Open the file and read content
 
