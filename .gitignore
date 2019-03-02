@@ -1,6 +1,8 @@
 # exclude everything
 data/*
 minifold_journey.md
-
+models/__pycache__/*
+models/.ipynb_checkpoints/*
+preprocessing/.ipynb_checkpoints/*
 # exception to the rule
 # !somefolder/.gitkeep 
