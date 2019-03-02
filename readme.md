@@ -38,9 +38,10 @@ Here are the following steps in order to run the code locally or in the cloud:
 	2. Extract/Decompress the data in any directory
 	3. Create the `/data` folder inside the `MiniFold` directory and copy the `training_30` file to it. Change extension to `.txt`.
 4. Execute data preprocessing notebooks (`preprocessing` folder) in the following order (we plan to release simple scripts instead of notebooks very soon):
-	1. `julia_get_proteins_under_200aa.ipynb` - selects proteins under 200 residues (you will need the [Julia programming language](https://julialang.org/) v1.0 in order to run it as well as [iJulia](https://github.com/JuliaLang/IJulia.jl))
-	2. `get_angles_from_coords_py.ipynb`
-	3. `angle_data_preparation_py.ipynb`
+	1. `get_proteins_under_200aa.jl`:  - selects proteins under 200 residues - (you will need the [Julia programming language](https://julialang.org/) v1.0 in order to run it)
+		1. **Alternatively**: `julia_get_proteins_under_200aa.ipynb` You will need Julia as well as [iJulia](https://github.com/JuliaLang/IJulia.jl))
+	3. `get_angles_from_coords_py.ipynb` - calculates dihedral angles from raw coordinates
+	4. `angle_data_preparation_py.ipynb`
 5. Run the models!
 	1. For **distance prediction**: `predicting_distances.ipynb`
 	2. For **angles prediction**: `predicting_angles.ipynb`
