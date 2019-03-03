@@ -45,7 +45,7 @@ The architecture of the Residual Network for distance prediction is very simmila
 
 The ResNet for angles prediction is built as a 1D-ResNet and takes as input tensors of shape LxN. The window length is set to 34 and we only train and predict aangles of proteins with less than 200 (L) AAs. No larger proteins nor crops of larger proteins are used.
 
-The 41 (N) channels of the input are distributed as follows: 20 for AAs in one-hot encoding (Lx20), 1 for the Van der Waals radius of the AA encoded previously and 20 channels for the Position Specific Scoring Matrix).
+The 42 (N) channels of the input are distributed as follows: 20 for AAs in one-hot encoding (Lx20), 2 for the Van der Waals radius and the surface accessibility of the AA encoded previously and 20 channels for the Position Specific Scoring Matrix).
 
 We followed the ResNet20 architecture but replaced the 2D Convolutions by 1D convolutions. The network output consists of a vector of 4 numbers that represent the `sin` and `cos` of the 2 dihedral angles between two AAs (Phi and Psi).
 
