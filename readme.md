@@ -25,8 +25,7 @@ Image from DeepMind's original blogpost.
 <div style="text-align:center">
 	<img src="imgs/our_preds.png", width="600">
 </div>
-Ground truth (left) and predicted distances (right) by our model (the yellow squares are a lack of exact position of the AAs described in the ProteinNet dataset documentation).
-
+Ground truth (left) and predicted distances (right) by AlphaFold.
 
 ## Running on your computer
 
