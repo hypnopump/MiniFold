@@ -20,12 +20,18 @@ The [methods implemented](implementation_details.md) are inspired by DeepMind's 
 
 Image from DeepMind's original blogpost.
 
-[Implementation_details](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md). A sample result of the distance predictor:
+[Implementation_details](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md). A sample result of our distance predictor:
 
 <div style="text-align:center">
 	<img src="imgs/our_preds.png", width="600">
 </div>
+
+And sample result of AlphaFold's distance predictor:
+<div style="text-align:center">
+	<img src="imgs/alphafold_preds.png", width="600">
+</div>
 Ground truth (left) and predicted distances (right) by AlphaFold.
+
 
 ## Running on your computer
 
