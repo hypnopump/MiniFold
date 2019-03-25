@@ -7,7 +7,8 @@ In a brief way, some promising ideas:
 * Use distance map as potential input for angle prediction (or vice versa?).
 * Use Physicochemical features of AAs as input.
 * Train with more data (in the cloud?)
-* Use predictions as constraints to the Rosetta Method for Protein Structure Prediction 
+* Use predictions as constraints to the Rosetta Method for Protein Structure Prediction
+* Set up a prediction script/function from raw text/FASTA file 
 * ...
 
 *"Science is a Work In Progress."*
