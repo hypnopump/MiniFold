@@ -1,5 +1,14 @@
 # MiniFold
-## Summary
+
+## Abstract
+
+* **Introduction**: The Protein Folding Problem (predicting a protein structure from its sequence) is an interesting one since DNA sequence data available is becoming cheaper and cheaper at an unprecedented rate, even faster than Moore's law [1](https://www.genome.gov/27541954/dna-sequencing-costs-data/)). Recent research has applied Deep Learning techniques in order to accurately predict the structure of polypeptides [[2](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005324), [3](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)]]. 
+* **Methods**: In this work, we present an attempt to replicate the AlphaFold system for protein prediction architecture [[3]((http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf))]. We use 1-D Residual Networks (ResNets) to predict dihedral torsion angles and 2-D ResNets to predict distance maps between the protein amino-acids[[4](https://arxiv.org/abs/1512.03385)]. We use the CASP7 ProteinNet dataset section for training and evaluation of the model [[5](https://arxiv.org/abs/1902.00249)]. An open-source implementation of the system described can be found [here](https://github.com/EricAlcaide/MiniFold).
+* **Results**:
+* **Conclusion**:
+
+
+## Introduction
 
 TL;DR: [DeepMind](https://deepmind.com) a company affiliated with Google and specialized in AI presented a novel algorithm for Protein Structure Prediction at [CASP13](http://predictioncenter.org/casp13/index.cgi) (a competition which goal is to find the best algorithms that predict protein structures in different categories).
 
@@ -10,7 +19,8 @@ The DeepMind work presented @ CASP was not a technological breakthrough (they di
 Based on the premise exposed before, the aim of this project is to build a model suitable for protein 3D structure prediction inspired by AlphaFold and many other AI solutions that may appear and achieve SOTA results.
 
 
-## Proposed Architecture 
+## Methods
+### Proposed Architecture 
 
 The [methods implemented](implementation_details.md) are inspired by DeepMind's original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. For distance prediction a 2D Resnet was used while for angles prediction a 1D Resnet was used.
 
@@ -33,7 +43,7 @@ And sample result of AlphaFold's distance predictor:
 Ground truth (left) and predicted distances (right) by AlphaFold.
 
 
-## Running on your computer
+### Reproducing the results
 
 Here are the following steps in order to run the code locally or in the cloud:
 1. Clone the repo: `git clone https://github.com/EricAlcaide/MiniFold`
@@ -41,45 +51,46 @@ Here are the following steps in order to run the code locally or in the cloud:
 3. Get & format the data
 	1. Download data [here](https://github.com/aqlaboratory/proteinnet) (select CASP7 text-based format)
 	2. Extract/Decompress the data in any directory
-	3. Create the `/data` folder inside the `MiniFold` directory and copy the `training_30` file to it. Change extension to `.txt`.
+	3. Create the `/data` folder inside the `MiniFold` directory and copy the `training_30, training_70 and training90` files to it. Change extensions to `.txt`.
 4. Execute data preprocessing notebooks (`preprocessing` folder) in the following order (we plan to release simple scripts instead of notebooks very soon):
-	1. `get_proteins_under_200aa.jl`:  - selects proteins under 200 residues - (you will need the [Julia programming language](https://julialang.org/) v1.0 in order to run it)
+	1. `get_proteins_under_200aa.jl *source_path* *destin_path*`:  - selects proteins under 200 residues from the *source_path* file (alternatively can be declared in the script itself) - (you will need the [Julia programming language](https://julialang.org/) v1.0 in order to run it)
 		1. **Alternatively**: `julia_get_proteins_under_200aa.ipynb` (you will need Julia as well as [iJulia](https://github.com/JuliaLang/IJulia.jl))
 	3. `get_angles_from_coords_py.ipynb` - calculates dihedral angles from raw coordinates
 	4. `angle_data_preparation_py.ipynb`
 5. Run the models!
-	1. For **distance prediction**: `predicting_distances.ipynb`
-	2. For **angles prediction**: `predicting_angles.ipynb`
+	1. For **angles prediction**: `models/predicting_angles.ipynb`
+	2. For **distance prediction**:
+		1. `models/distance_pipeline/pretrain_model_pssm_l_x_l.ipynb`
+		2. `models/distance_pipeline/pipeline_caller.py`
 
 If you encounter any errors during installation, don't hesitate and open an [issue](https://github.com/EricAlcaide/MiniFold/issues).
 
 
-## Future
+## Discussion
+### Future
 
-The future directions of the project as well as planned/work-in-progress improvements are extensively exposed in the [future.md](future.md) file. In a brief way, some promising ideas:
+There is plenty of ideas that could not be tried in this project due to computational and time constraints. In a brief way, some promising ideas or future directions are listed below:
 
-* Train with crops of 64x64, not windows of 200x200 (and average at prediction time).
+* Train with crops of 64x64 AAs, not windows of 200x200 AAs and average at prediction time.
 * Use data from Multiple Sequence Alignments (MSA) such as paired changes bewteen AAs.
-* Use distance map as potential input for angle prediction (or vice versa?) .
-* Train with more data (in the cloud?)
-* ...
+* Use distance map as potential input for angle prediction or vice versa.
+* Train with more data
+* Use predictions as constraints to a Protein Structure Prediction pipeline (CNS, Rosetta Solve or others).
+* Set up a prediction script/pipeline from raw text/FASTA file 
 
-*"Science is a Work In Progress."*
+### Limitations
 
-
-## Limitations
-
-This project has been developed in one week by 1 person and,, therefore, many limitations have appeared.
+This project has been developed mainly during 3 weeks by 1 person and, therefore, many limitations have appeared.
 They will be listed below in order to give a sense about what this project is and what it's not.
 
-* **No usage of Multiple Sequence Alignments (MSA)**: The methods developed in this project don't use [MSA](https://en.wikipedia.org/wiki/Multiple_sequence_alignment) nor MSA-based features as input. 
-* **Computing power/memory**: Development of the project has taken part in a computer with the following specs: Intel i7-6700k, 8gb RAM, NVIDIA GTX-1060Ti 6gb and 256gb of storage. The capacity for data exploration, processing, training and evaluating the models is limited.
+* **No usage of Multiple Sequence Alignments (MSA)**: The methods developed in this project don't use [MSA](https://www.ncbi.nlm.nih.gov/pubmed/27896722) nor MSA-based features as input. 
+* **Computing power/memory**: Development of the project has taken part in a computer with the following specifications: Intel i7-6700k, 8gb RAM, NVIDIA GTX-1060Ti 6gb and 256gb of storage. The capacity for data exploration, processing, training and evaluating the models is limited.
 * **GPU/TPUs for training**: The models were trained and evaluated on a single GPU. No cloud servers were used. 
-* **Time**: One week of development during spare time. Ideas that might be worth testing in the future are described [here]().
-* **Domain expertise**: No experts in the field. The author knows the basics of Biochemistry and Deep Learnning.
-* **Data**: The average paper about Protein Structure Prediction uses a personalized dataset acquired from the Protein Data Bank (PDB). No such dataset was used. Instead, we used a subset of the [ProteinNet](https://github.com/aqlaboratory/proteinnet) dataset from CASP7. Our models are trained with just 150 proteins (distance prediction) and 600 proteins (angles prediction) due to memory constraints. 
+* **Time**: Three weeks of development during spare time.
+* **Domain expertise**: No experts in the field of genomics, proteomics or bioinformatics. The author knows the basics of Biochemistry and Deep Learning.
+* **Data**: The average paper about Protein Structure Prediction uses a personalized dataset acquired from the Protein Data Bank [(PDB)](https://www.ncbi.nlm.nih.gov/pubmed/28573592). No such dataset was used. Instead, we used a subset of the [ProteinNet](https://github.com/aqlaboratory/proteinnet) dataset from CASP7. Our models are trained with just 150 proteins (distance prediction) and 600 proteins (angles prediction) due to memory constraints. 
 
-Due to these limitations and/or constraints, the precission/accuracy the methods here developed can achieve is limited when compared against SOTA algorithms.
+Due to these limitations and/or constraints, the precission/accuracy the methods here developed can achieve is limited when compared against State Of The Art algorithms.
 
 
 ## References
