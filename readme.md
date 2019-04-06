@@ -33,8 +33,9 @@ Image from DeepMind's original blogpost.
 [Implementation_details](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md). A sample result of our distance predictor:
 
 <div style="text-align:center">
-	<img src="imgs/our_preds.png", width="600">
+	<img src="models/distance_pipeline/images/golden_img_v91_45.png", width="600">
 </div>
+Ground truth (left) and predicted distances (right) by MiniFold.
 
 And sample result of AlphaFold's distance predictor:
 <div style="text-align:center">
