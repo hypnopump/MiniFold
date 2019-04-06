@@ -25,7 +25,7 @@ Based on the premise exposed before, the aim of this project is to build a model
 The [methods implemented](implementation_details.md) are inspired by DeepMind's original post. Two different residual neural networks (ResNets) are used to predict **angles** between adjacent aminoacids (AAs) and **distance** between every pair of AAs of a protein. For distance prediction a 2D Resnet was used while for angles prediction a 1D Resnet was used.
 
 <div style="text-align:center">
-	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="900">
+	<img src="https://storage.googleapis.com/deepmind-live-cms/images/Origami-CASP-181127-r01_fig4-method.width-400.png" width="600" height="400">
 </div>
 
 Image from DeepMind's original blogpost.
@@ -33,7 +33,7 @@ Image from DeepMind's original blogpost.
 [Implementation_details](implementation_details.md) can be found [here together with a detailed explanation](implementation_details.md). A sample result of our distance predictor:
 
 <div style="text-align:center">
-	<img src="models/distance_pipeline/images/golden_img_v91_45.png", width="600">
+	<img src="models/distance_pipeline/images/golden_img_v91_45.png", width="900">
 </div>
 Ground truth (left) and predicted distances (right) by MiniFold.
 
