@@ -34,9 +34,9 @@ The output of the network is, then, a classification among 6 classes wich are ra
 Ground truth (left) and predicted distances (right) by AlphaFold.
 
 <div style="text-align:center">
-	<img src="imgs/our_preds.png", width="600">
+	<img src="models/distance_pipeline/images/golden_img_v91_45.png", width="900">
 </div>
-Ground truth (upper section) and predicted distances (lower section) by MiniFold.
+Ground truth (left) and predicted distances (right) by MiniFold.
 
 The architecture of the Residual Network for distance prediction is very simmilar, the main difference being that the model here described was trained with windows of 200x200 AAs while AlphaFold was trained with crops of 64x64 AAs. When it comes to prediction, AlphaFold used the smaller window size to average across different outputs and achieve a smoother result. Our prediction, however, is a unique window, so there's no average (noisier predictions).
 

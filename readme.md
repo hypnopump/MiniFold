@@ -10,7 +10,7 @@
 
 ## Introduction
 
-TL;DR: [DeepMind](https://deepmind.com) a company affiliated with Google and specialized in AI presented a novel algorithm for Protein Structure Prediction at [CASP13](http://predictioncenter.org/casp13/index.cgi) (a competition which goal is to find the best algorithms that predict protein structures in different categories).
+[DeepMind](https://deepmind.com), a company affiliated with Google and specialized in AI, presented a novel algorithm for Protein Structure Prediction at [CASP13](http://predictioncenter.org/casp13/index.cgi) (a competition which goal is to find the best algorithms that predict protein structures in different categories).
 
 The Protein Folding Problem is an interesting one since there's tons of DNA sequence data available and it's becoming cheaper and cheaper at an unprecedented rate (faster than [Moore's law](https://www.genome.gov/27541954/dna-sequencing-costs-data/)). The cells build the proteins they need through **transcription** (from DNA to RNA) and **translation** (from RNA to Aminocids (AAs)). However, the function of a protein does not depend solely on the sequence of AAs that form it, but also their spatial 3D folding. Thus, it's hard to predict the function of a protein from its DNA sequence. **AI** can help solve this problem by learning the relations that exist between a determined sequence and its spatial 3D folding. 
 
@@ -37,7 +37,6 @@ Image from DeepMind's original blogpost.
 </div>
 Ground truth (left) and predicted distances (right) by MiniFold.
 
-And sample result of AlphaFold's distance predictor:
 <div style="text-align:center">
 	<img src="imgs/alphafold_preds.png", width="600">
 </div>
