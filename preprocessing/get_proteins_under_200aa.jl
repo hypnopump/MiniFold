@@ -16,9 +16,10 @@ RAW_DATA_PATH = "../data/training_30.txt"	# Path to raw data file
 DESTIN_PATH = "../data/full_under_200.txt"	# Path to destin file
 
 # alternatively declare paths from cammand line
-if length(ARGS) > 1:
+if length(ARGS) > 1
     RAW_DATA_PATH = ARGS[1]   # Path to raw data file
     DESTIN_PATH = ARGS[2]  # Path to destin file
+end
 
 # Open the file and read content
 f = try open(RAW_DATA_PATH) catch
