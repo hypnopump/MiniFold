@@ -48,7 +48,7 @@ msgpack==0.6.1
 nbconvert==5.4.0
 nbformat==4.4.0
 networkx==2.2
-nltk==3.4
+nltk==3.4.5
 notebook==5.7.2
 numpy==1.15.4
 pandas==0.23.4
