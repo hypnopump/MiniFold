@@ -2,7 +2,7 @@ absl-py==0.6.1
 astor==0.7.1
 backcall==0.1.0
 biopython==1.73
-bleach==3.0.2
+bleach==3.1.4
 certifi==2018.11.29
 chardet==3.0.4
 colorama==0.4.1
