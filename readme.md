@@ -107,6 +107,11 @@ Clone this project to your computer:
 `git clone https://github.com/EricAlcaide/MiniFold`
  
 By participating in this project, you agree to abide by the thoughtbot [code of conduct](https://thoughtbot.com/open-source-code-of-conduct)
+
+#### Collaborators
+We would like to acknowledge the contributions of the following collaborators: 
+* [@roberCO](https://github.com/roberCO)
+* [@pabloAMC](https://github.com/PabloAMC)
  
 ## Meta
  
