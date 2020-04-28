@@ -1,11 +1,27 @@
 # MiniFold
 
+[![DOI](https://zenodo.org/badge/172886347.svg)](https://zenodo.org/badge/latestdoi/172886347)
+
 ## Abstract
 
 * **Introduction**: The Protein Folding Problem (predicting a protein structure from its sequence) is an interesting one since DNA sequence data available is becoming cheaper and cheaper at an unprecedented rate, even faster than Moore's law [1](https://www.genome.gov/27541954/dna-sequencing-costs-data/). Recent research has applied Deep Learning techniques in order to accurately predict the structure of polypeptides [[2](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005324), [3](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)]. 
 * **Methods**: In this work, we present an attempt to imitate the AlphaFold system for protein prediction architecture [[3](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)]. We use 1-D Residual Networks (ResNets) to predict dihedral torsion angles and 2-D ResNets to predict distance maps between the protein amino-acids[[4](https://arxiv.org/abs/1512.03385)]. We use the CASP7 ProteinNet dataset section for training and evaluation of the model [[5](https://arxiv.org/abs/1902.00249)]. An open-source implementation of the system described can be found [here](https://github.com/EricAlcaide/MiniFold).
 * **Results**: We are able to obtain distance maps and torsion angle predictions for a protein given it's sequence and PSSM. Our angle prediction model scores a 0.39 of MAE (Mean Absolute Error), and 0.39 and 0.43 R^2 coefficients for Phi and Psi respectively, whereas SoTA is around 0.69 (Phi) and 0.73 (Psi). Our methods do not include post-processing of Deep Learning outputs, which can be very noisy. 
 * **Conclusion**: We have shown the potential of Deep Learning methods and its possible application to solve the Protein Folding Problem. Despite technical limitations, Neural Networks are able to capture relations between the data. Although our visually pleasant results, our system lacks components such as the protein structure prediction from both dihedral torsion angles and the distance map of a given protein and the post-processing of our predictions in order to reduce noise.
+
+#### Citation
+```
+@misc{ericalcaide2019
+  title = {MiniFold: a DeepLearning-based Mini Protein Folding Engine},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  author = {Alcaide, Eric},
+  year = {2019},
+  howpublished = {\url{https://github.com/EricAlcaide/MiniFold/}},
+  doi = {10.5281/zenodo.3774491},
+  url = {https://doi.org/10.5281/zenodo.3774491}
+}
+```
 
 
 ## Introduction
