@@ -79,7 +79,7 @@ Here are the following steps in order to run the code locally or in the cloud:
 		1. `models/distance_pipeline/pretrain_model_pssm_l_x_l.ipynb`
 		2. `models/distance_pipeline/pipeline_caller.py`
 6. 3D structure modelling from predicted results
-     1. For **RR format conversion and 3D structure modelling** follow the steps given in the `models/distance_pipeline/Tutorials/README.pdf`
+     1. For **RR format conversion and 3D structure modelling** follow the steps given in `models/distance_pipeline/Tutorials/README.pdf`
 
 If you encounter any errors during installation, don't hesitate and open an [issue](https://github.com/EricAlcaide/MiniFold/issues).
 
