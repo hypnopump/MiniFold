@@ -10,6 +10,7 @@
 * **Conclusion**: We have shown the potential of Deep Learning methods and its possible application to solve the Protein Folding Problem. Despite technical limitations, Neural Networks are able to capture relations between the data. Although our visually pleasant results, our system lacks components such as the protein structure prediction from both dihedral torsion angles and the distance map of a given protein and the post-processing of our predictions in order to reduce noise.
 * **Post processing of predictions**: Presently the post processing of the predictions is done using a python script which converts the predicted results into RR format known as Residue-Residue contact format. This format represents the probability of contact between pairwise residues. Data in this format are inserted between MODEL and END records of the submission file. The prediction starts with the sequence of the predicted target splitted.The sequence is followed by the list of contacts in the five-column format as represented below:-
 
+
 PFRMAT RR
 TARGET T0999
 AUTHOR 1234-5678-9000
