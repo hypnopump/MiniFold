@@ -8,6 +8,31 @@
 * **Methods**: In this work, we present an attempt to imitate the AlphaFold system for protein prediction architecture [[3](http://predictioncenter.org/casp13/doc/presentations/Pred_CASP13-DeepLearning-AlphaFold-Senior.pdf)]. We use 1-D Residual Networks (ResNets) to predict dihedral torsion angles and 2-D ResNets to predict distance maps between the protein amino-acids[[4](https://arxiv.org/abs/1512.03385)]. We use the CASP7 ProteinNet dataset section for training and evaluation of the model [[5](https://arxiv.org/abs/1902.00249)]. An open-source implementation of the system described can be found [here](https://github.com/EricAlcaide/MiniFold).
 * **Results**: We are able to obtain distance maps and torsion angle predictions for a protein given it's sequence and PSSM. Our angle prediction model scores a 0.39 of MAE (Mean Absolute Error), and 0.39 and 0.43 R^2 coefficients for Phi and Psi respectively, whereas SoTA is around 0.69 (Phi) and 0.73 (Psi). Our methods do not include post-processing of Deep Learning outputs, which can be very noisy. 
 * **Conclusion**: We have shown the potential of Deep Learning methods and its possible application to solve the Protein Folding Problem. Despite technical limitations, Neural Networks are able to capture relations between the data. Although our visually pleasant results, our system lacks components such as the protein structure prediction from both dihedral torsion angles and the distance map of a given protein and the post-processing of our predictions in order to reduce noise.
+* **Post processing of predictions**: Presently the post processing of the predictions is done using a python script which converts the predicted results into RR format known as Residue-Residue contact format. This format represents the probability of contact between pairwise residues.
+Data in this format are inserted between MODEL and END records of the submission file. The prediction starts with the sequence of the predicted target splitted. The sequence is followed by the list of contacts in the five-column format as represented below:-
+PFRMAT RR
+TARGET T0999
+AUTHOR 1234-5678-9000
+REMARK Predictor remarks
+METHOD Description of methods used
+METHOD Description of methods used
+MODEL  1
+HLEGSIGILLKKHEIVFDGC # <- entire target sequence (up to 50 
+HDFGRTYIWQMSDASHMD   #   residues per line)
+1 8 0 8 0.720        
+1 10 0 8 0.715       # <- i=1 j=10: indices of residues (integers), 
+31 38 0 8 0.710       
+10 20 0 8 0.690      # <- d1=0  d2=8: the range of Cb-Cb distance   
+30 37 0 8 0.678      #    predicted for the residue pair (i,j)  
+11 29 0 8 0.673       
+1 9 0 8 0.63         # <- p=0.63: probability of the residues i=1 and j=9 
+21 37 0 8 0.502      #    being in contact (in descending order) 
+8 15 0 8 0.401
+3 14 0 8 0.400
+5 15 0 8 0.307
+7 14 0 8 0.30
+END
+The predictions in this format can then be utilised as input to build 3D models using structure modelling softwares.
 
 #### Citation
 ```
