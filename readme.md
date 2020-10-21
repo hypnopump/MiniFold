@@ -32,7 +32,8 @@
 	5 15 0 8 0.307
 	7 14 0 8 0.30
 	END
-	The predictions in this format can then be utilised as input to build 3D models using structure modelling softwares.
+    
+    The predictions in this format can then be utilised as input to build 3D models using structure modelling softwares.
 
 #### Citation
 ```
